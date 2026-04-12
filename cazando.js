@@ -130,3 +130,14 @@ function restarTiempo() {
 if (!(tiempo <= 0)) {
     restarTiempo();
 }
+function reiniciarJuego() {
+    puntaje = 0;
+    tiempo = 30;
+    mostrarEnSpan("puntaje", puntaje);
+    mostrarEnSpan("tiempo", tiempo);
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
+    restarTiempo();
+    iniciarJuego();
+}
