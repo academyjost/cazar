@@ -82,7 +82,7 @@ function moverAbajo(){
     }
 }
 function detectarColision(){
-    if(gatoX < comidax + ANCHOCOMIDA && gatoX + ANCHOGATO > comidaX && gatoY < comidaY + ALTOCOMIDA && gatoy + ALTOGATO > comidaY){
+    if(gatox < comidax + ANCHOCOMIDA && gatox + ANCHOGATO > comidax && gatoy < comiday + ALTOCOMIDA && gatoy + ALTOGATO > comiday){
 
         alert("¡Has atrapado la comida!");
         moverComida();
