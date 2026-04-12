@@ -16,8 +16,6 @@ let comiday = 0;
 const ANCHOCOMIDA = 30;
 const ALTOCOMIDA = 30;
 
-clearInterval(temporizador);
-
 //ctx.fillStyle = "#000000";
 function graficarRectangulo(x,y,ancho,alto,color){
     ctx.fillStyle = color;
@@ -33,6 +31,10 @@ function graficarComida(){
 }
 //Funcion Iniciar Juego
 function iniciarJuego(){
+    clearInterval(temporizador);
+
+    puntaje = 0;
+     tiempoRestante = 10;
     //gato centro del rectangulo
     gatox = (canvas.width/2) - (ANCHOGATO/2);
     gatoy = (canvas.height/2) - (ALTOGATO/2);
@@ -51,8 +53,6 @@ function iniciarJuego(){
 function limpiarCanva(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
 }
-const LIMITE_X = canvas.width - ANCHOGATO;
-const LIMITE_Y = canvas.height - ALTOGATO;
 
 function moverIzquierda(){
     if(gatox > 0){
@@ -90,6 +90,9 @@ function moverAbajo(){
         detectarColision();
     }
 }
+const LIMITE_X = canvas.width - ANCHOGATO;
+const LIMITE_Y = canvas.height - ALTOGATO;
+
 function actualizarJuego(){
     limpiarCanva();
     graficarGato();
@@ -104,21 +107,21 @@ function detectarColision(){
         puntaje=puntaje+1;
         mostrarEnSpan("puntaje",puntaje);
         if(puntaje === 6){
+            clearInterval(temporizador);
             alert("¡Ganaste!");
-            reiniciarJuego();
+            iniciarJuego();
         }else{
+            tiempoRestante=10;
+             mostrarEnSpan("tiempo",tiempoRestante);
             moverComida();
             actualizarJuego();
         }
-        limpiarCanvas();
-        graficarGato();
-        graficarComida();
     }
 }
 function iniciarTemporizador(){
     clearInterval(temporizador);
     temporizador = setInterval(function(){
-        tiempoRestante-=1;
+        tiempoRestante--;
         mostrarEnSpan("tiempo",tiempoRestante);
         if(tiempoRestante <= 0){
             clearInterval(temporizador);
@@ -161,16 +164,4 @@ function restarTiempo() {
             clearInterval(temporizador);
         }
     }, 1000);
-}
-
-function reiniciarJuego() {
-    puntaje = 0;
-    tiempo = 30;
-    mostrarEnSpan("puntaje", puntaje);
-    mostrarEnSpan("tiempo", tiempo);
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    restarTiempo();
-    iniciarJuego();
 }
