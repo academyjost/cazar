@@ -1,7 +1,7 @@
 function generarAleatorio(min,max){
     let random=Math.random();
     let numero=random*(max-min+1);
-    let numeroEntero = Math.ceil(numero);
+    let numeroEntero = Math.floor(numero);
     numeroEntero = numeroEntero+min-1;
     return numeroEntero
 }
@@ -9,5 +9,9 @@ function generarAleatorio(min,max){
 
 function mostrarEnSpan(idSpan,valor){
     let componente=document.getElementById(idSpan);
-    componente.textContent=valor;
+    if (componente) {
+        componente.textContent=valor;
+    } else {
+        console.warn(`No se encontró el elemento con id: ${idSpan}`);
+    }
 }

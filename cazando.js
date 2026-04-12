@@ -1,6 +1,9 @@
 let canvas = document.getElementById("areaJuego");
 let ctx = canvas.getContext("2d");
 
+let puntaje = 0;
+let tiempoRestante = 10;
+let temporizador;
 //Gato
 let gatox = 0;
 let gatoy = 0;
@@ -34,10 +37,14 @@ function iniciarJuego(){
     //Comida en esquina inferior derecha
     comidax = canvas.width - ANCHOCOMIDA;
     comiday = canvas.height - ALTOCOMIDA;
-
+     puntaje = 0;
+     tiempo = 10;
+     mostrarEnSpan("puntaje",puntaje);
+     mostrarEnSpan("tiempo",tiempo); 
+    limpiarCanva();
     graficarGato();
     graficarComida();
-
+    iniciarTemporizador();
 }
 function limpiarCanva(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -81,6 +88,12 @@ function moverAbajo(){
         detectarColision();
     }
 }
+function actualizarJuego(){
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
+    detectarColision();
+}
 function detectarColision(){
     if(gatox < comidax + ANCHOCOMIDA && gatox + ANCHOGATO > comidax && gatoy < comiday + ALTOCOMIDA && gatoy + ALTOGATO > comiday){
 
@@ -88,10 +101,28 @@ function detectarColision(){
         moverComida();
         puntaje=puntaje+1;
         mostrarEnSpan("puntaje",puntaje);
+        if(puntaje === 6){
+            alert("¡Ganaste!");
+            reiniciarJuego();
+        }else{
+            moverComida();
+            actualizarJuego();
+        }
         limpiarCanvas();
         graficarGato();
         graficarComida();
     }
+}
+function iniciarTemporizador(){
+    temporizador = setInterval(function(){
+        tiempoRestante-=1;
+        mostrarEnSpan("tiempo",tiempoRestante);
+        if(tiempoRestante <= 0){
+            alert("Game Over!");
+            clearInterval(temporizador);
+            reiniciarJuego();
+        }
+    }, 1000);
 }
 function moverComida(){
     comidax = generarAleatorio(0,canvas.width - ANCHOCOMIDA);
@@ -99,6 +130,7 @@ function moverComida(){
 }
 function reiniciarJuego(){
     puntaje=0;
+    tiempoRestante=10;
     mostrarEnSpan("puntaje",puntaje);
     iniciarJuego();
 }
