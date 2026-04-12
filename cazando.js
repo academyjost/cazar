@@ -16,6 +16,8 @@ let comiday = 0;
 const ANCHOCOMIDA = 30;
 const ALTOCOMIDA = 30;
 
+clearInterval(temporizador);
+
 //ctx.fillStyle = "#000000";
 function graficarRectangulo(x,y,ancho,alto,color){
     ctx.fillStyle = color;
@@ -114,12 +116,13 @@ function detectarColision(){
     }
 }
 function iniciarTemporizador(){
+    clearInterval(temporizador);
     temporizador = setInterval(function(){
         tiempoRestante-=1;
         mostrarEnSpan("tiempo",tiempoRestante);
         if(tiempoRestante <= 0){
-            alert("Game Over!");
             clearInterval(temporizador);
+            alert("¡Se acabó el tiempo! Game Over!");
             reiniciarJuego();
         }
     }, 1000);
@@ -149,8 +152,9 @@ function restarTiempo() {
         mostrarEnSpan('tiempo', tiempo);
 
         if (tiempo <= 0) {
-            alert("Game Over!")
             clearInterval(temporizador);
+            alert("Game Over!")
+            reiniciarJuego();
         }
         if (puntaje === 6) {
             alert("¡Ganaste!");
@@ -159,9 +163,6 @@ function restarTiempo() {
     }, 1000);
 }
 
-if (!(tiempo <= 0)) {
-    restarTiempo();
-}
 function reiniciarJuego() {
     puntaje = 0;
     tiempo = 30;
