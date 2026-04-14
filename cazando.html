@@ -3,45 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cazando - Arcade Pro</title>
+  <title>Cazando Arcade - Johann</title>
   <link rel="stylesheet" href="cazando.css">
 </head>
 <body onload="iniciarJuego();">
 
-  <div class="game-container">
-    <header>
-      <h1>Cazando</h1>
-      <p class="author">Creado por: <span>Johann</span></p>
-    </header>
+  <div class="game-wrapper">
+    <header class="game-header">
+      <h1>Cazando <span class="badge">Arcade</span></h1>
+      <p class="author">By: <strong>Johann Cacuango</strong></p> </header>
 
-    <div class="main-layout">
-      <div class="canvas-wrapper">
+    <div class="game-layout">
+      <section class="canvas-container">
         <canvas id="areaJuego" width="500" height="500"></canvas>
         <p id="mensaje"></p>
-      </div>
+      </section>
 
-      <aside class="side-panel">
-        <div class="stats-card">
-          <div class="stat">
-            <span class="label">PUNTOS</span>
-            <span id="puntaje" class="value">0</span>
+      <aside class="dashboard">
+        <div class="stats-panel">
+          <div class="stat-box">
+            <label>PUNTOS</label>
+            <span id="puntaje">0</span>
           </div>
-          <div class="stat">
-            <span class="label">TIEMPO</span>
-            <span id="tiempo" class="value">10</span>
+          <div class="stat-box highlight">
+            <label>TIEMPO</label>
+            <span id="tiempo">10</span>
           </div>
         </div>
 
-        <div class="controles">
+        <div class="controller">
           <div class="d-pad">
-            <button id="btnArriba" class="btn-dir">▲</button>
-            <div class="horizontal-btns">
-              <button id="btnIzquierda" class="btn-dir">◀</button>
-              <button id="btnAbajo" class="btn-dir">▼</button>
-              <button id="btnDerecha" class="btn-dir">▶</button>
+            <button id="btnArriba" class="btn-ctrl">▲</button>
+            <div class="d-pad-middle">
+              <button id="btnIzquierda" class="btn-ctrl">◀</button>
+              <button id="btnAbajo" class="btn-ctrl">▼</button>
+              <button id="btnDerecha" class="btn-ctrl">▶</button>
             </div>
           </div>
-          <button id="btnReiniciar" class="btn-action">REINICIAR JUEGO</button>
+          <button id="btnReiniciar" class="btn-reset">REINICIAR</button>
         </div>
       </aside>
     </div>
