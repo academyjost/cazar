@@ -3,47 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cazando Arcade - Johann</title>
+  <title>TRON: ARES - Protocolo de Caza</title>
   <link rel="stylesheet" href="cazando.css">
 </head>
 <body onload="iniciarJuego();">
 
-  <div class="game-wrapper">
-    <header class="game-header">
-      <h1>Cazando <span class="badge">Arcade</span></h1>
-      <p class="author">By: <strong>Johann Cacuango</strong></p> </header>
+  <div class="grid-background"></div>
 
-    <div class="game-layout">
-      <section class="canvas-container">
+  <div class="interface-container">
+    <aside class="promo-sidebar">
+   <img src="image_37608b.jpg" alt="TRON Ares Poster" class="promo-img">
+   <div class="glitch-title">SISTEMA ARES</div>
+   </aside>
+
+    <main class="game-core">
+      <header class="game-header">
+        <h1>TRON <span class="neon-text">CAZANDO</span></h1>
+        <p class="user-id">USUARIO: <span>JOHANN</span></p>
+      </header>
+
+      <div class="canvas-frame">
         <canvas id="areaJuego" width="500" height="500"></canvas>
         <p id="mensaje"></p>
-      </section>
+      </div>
+    </main>
 
-      <aside class="dashboard">
-        <div class="stats-panel">
-          <div class="stat-box">
-            <label>PUNTOS</label>
-            <span id="puntaje">0</span>
-          </div>
-          <div class="stat-box highlight">
-            <label>TIEMPO</label>
-            <span id="tiempo">10</span>
+    <aside class="control-center">
+      <div class="data-readout">
+        <div class="data-bit">
+          <label>PUNTOS</label>
+          <span id="puntaje">0</span>
+        </div>
+        <div class="data-bit alert">
+          <label>TIEMPO</label>
+          <span id="tiempo">10</span>
+        </div>
+      </div>
+
+      <div class="navigation-panel">
+        <div class="d-pad">
+          <button id="btnArriba" class="nav-btn">▲</button>
+          <div class="middle-row">
+            <button id="btnIzquierda" class="nav-btn">◀</button>
+            <button id="btnAbajo" class="nav-btn">▼</button>
+            <button id="btnDerecha" class="nav-btn">▶</button>
           </div>
         </div>
-
-        <div class="controller">
-          <div class="d-pad">
-            <button id="btnArriba" class="btn-ctrl">▲</button>
-            <div class="d-pad-middle">
-              <button id="btnIzquierda" class="btn-ctrl">◀</button>
-              <button id="btnAbajo" class="btn-ctrl">▼</button>
-              <button id="btnDerecha" class="btn-ctrl">▶</button>
-            </div>
-          </div>
-          <button id="btnReiniciar" class="btn-reset">REINICIAR</button>
-        </div>
-      </aside>
-    </div>
+        <button id="btnReiniciar" class="reboot-btn">REINICIAR PROTOCOLO</button>
+      </div>
+    </aside>
   </div>
 
   <script src="utils.js"></script>
