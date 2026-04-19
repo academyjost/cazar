@@ -1,1 +1,1 @@
-prompt
+promptmejora el ccs y el html para que se vea mucho mejor ademas mejora la parte del css y que se vea como una pagina de juegos sin modificar el js 

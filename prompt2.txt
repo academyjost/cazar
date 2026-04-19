@@ -1,0 +1,1 @@
+prompt :dime lo que esta mal de estos archivos ya que no me salen las flechas para mover el gato y tambien mejora el css que se pueda agragr una imagen para dar mas sensacion de estar en el juego 
