@@ -2,7 +2,7 @@ let canvas = document.getElementById("areaJuego");
 let ctx = canvas.getContext("2d");
 
 let puntaje = 0;
-let tiempoRestante = 10;
+let tiempoRestante = 15;
 let temporizador;
 
 // Personaje (Gato)
@@ -38,7 +38,7 @@ function iniciarJuego() {
     clearInterval(temporizador);
     
     puntaje = 0;
-    tiempoRestante = 10;
+    tiempoRestante = 15;
     
     // Posición inicial
     gatox = (canvas.width / 2) - (ANCHOGATO / 2);
