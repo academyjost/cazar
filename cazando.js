@@ -47,11 +47,11 @@ function iniciarJuego() {
     comidax = canvas.width - ANCHOCOMIDA;
     comiday = canvas.height - ALTOCOMIDA;
 
-    mostrarEnSpan("puntaje", puntaje);
     mostrarEnSpan("tiempo", tiempoRestante); 
     
     actualizarJuego();
     iniciarTemporizador();
+    mostrarEnSpan("puntaje", puntaje);
 }
 
 function limpiarCanva() {
@@ -110,18 +110,19 @@ function detectarColision() {
             alert("¡PROTOCOLO COMPLETADO: GANASTE!");
             iniciarJuego();
         } else {
-            tiempoRestante = 10; // Reiniciar tiempo al comer
-            mostrarEnSpan("tiempo", tiempoRestante);
             moverComida();
             actualizarJuego();
-        }
+            tiempoRestante = 15; // Reiniciar tiempo al comer
+            mostrarEnSpan("tiempo", tiempoRestante-1); // Mostrar el tiempo actualizado
+            
+        } 
     }
 }
 
 function iniciarTemporizador() {
     temporizador = setInterval(function() {
         tiempoRestante--;
-        mostrarEnSpan("tiempo", tiempoRestante);
+        mostrarEnSpan("tiempo", tiempoRestante-1);
         if (tiempoRestante <= 0) {
             clearInterval(temporizador);
             alert("¡SISTEMA CAÍDO: GAME OVER!");
