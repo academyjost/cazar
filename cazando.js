@@ -1,12 +1,12 @@
 let canvas = document.getElementById("areaJuego");
 let ctx = canvas.getContext("2d");
 
-
 let imgGato = new Image();
 imgGato.src = "gato.png";
 
 let puntaje = 0;
-let tiempoRestante = 15;
+let tiempoInicialRonda = 15; 
+let tiempoRestante;
 let temporizador;
 
 // Personaje (Gato)
@@ -14,8 +14,6 @@ let gatox = 0;
 let gatoy = 0;
 const ANCHOGATO = 50;
 const ALTOGATO = 50;
-
-
 
 // Comida
 let comidax = 0;
@@ -30,7 +28,7 @@ function graficarRectangulo(x, y, ancho, alto, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, ancho, alto);
 }
-//modificacion del dibujo
+
 function graficarGato() {
     ctx.drawImage(imgGato, gatox, gatoy, ANCHOGATO, ALTOGATO);
 }
@@ -43,20 +41,25 @@ function iniciarJuego() {
     clearInterval(temporizador);
     
     puntaje = 0;
-    tiempoRestante = 15;
+    tiempoRestante = tiempoInicialRonda; 
     
-    // Posición inicial
+    // Reducimos el tiempo para la PRÓXIMA vez (mínimo 5s para que sea jugable)
+    if (tiempoInicialRonda > 5) { 
+        tiempoInicialRonda--; 
+    }
+    
+    // 1. Definir posiciones primero
     gatox = (canvas.width / 2) - (ANCHOGATO / 2);
     gatoy = (canvas.height / 2) - (ALTOGATO / 2);
-    
-    comidax = canvas.width - ANCHOCOMIDA;
-    comiday = canvas.height - ALTOCOMIDA;
+    moverComida(); 
 
+    // 2. Actualizar Interfaz
     mostrarEnSpan("tiempo", tiempoRestante); 
+    mostrarEnSpan("puntaje", puntaje);
     
+    // 3. Dibujar y arrancar ciclo
     actualizarJuego();
     iniciarTemporizador();
-    mostrarEnSpan("puntaje", puntaje);
 }
 
 function limpiarCanva() {
@@ -115,11 +118,13 @@ function detectarColision() {
             alert("¡PROTOCOLO COMPLETADO: GANASTE!");
             iniciarJuego();
         } else {
-            moverComida();
-            actualizarJuego();
-            tiempoRestante = 15; // Reiniciar tiempo al comer
-            mostrarEnSpan("tiempo", tiempoRestante-1); // Mostrar el tiempo actualizado
+            // Restar tiempo por cada comida y moverla
+            tiempoRestante -= 1;
+            if (tiempoRestante < 0) tiempoRestante = 0;
+            mostrarEnSpan("tiempo", tiempoRestante);
             
+            moverComida(); 
+            actualizarJuego();
         } 
     }
 }
@@ -127,7 +132,7 @@ function detectarColision() {
 function iniciarTemporizador() {
     temporizador = setInterval(function() {
         tiempoRestante--;
-        mostrarEnSpan("tiempo", tiempoRestante-1);
+        mostrarEnSpan("tiempo", tiempoRestante);
         if (tiempoRestante <= 0) {
             clearInterval(temporizador);
             alert("¡SISTEMA CAÍDO: GAME OVER!");
@@ -141,7 +146,7 @@ function moverComida() {
     comiday = generarAleatorio(0, canvas.height - ALTOCOMIDA);
 }
 
-// Eventos de botones
+// Registro de eventos
 document.getElementById("btnArriba").onclick = moverArriba;
 document.getElementById("btnAbajo").onclick = moverAbajo;
 document.getElementById("btnIzquierda").onclick = moverIzquierda;
