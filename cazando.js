@@ -3,6 +3,8 @@ let ctx = canvas.getContext("2d");
 
 let imgGato = new Image();
 imgGato.src = "gato.png";
+let imgComida = new Image();
+imgComida.src = "comida.png";
 
 let puntaje = 0;
 let tiempoInicialRonda = 15; 
@@ -34,7 +36,7 @@ function graficarGato() {
 }
 
 function graficarComida() {
-    graficarRectangulo(comidax, comiday, ANCHOCOMIDA, ALTOCOMIDA, "#FF0000");
+    ctx.drawImage(imgComida, comidax, comiday, ANCHOCOMIDA, ALTOCOMIDA);
 }
 
 function iniciarJuego() {
