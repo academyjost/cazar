@@ -1,6 +1,10 @@
 let canvas = document.getElementById("areaJuego");
 let ctx = canvas.getContext("2d");
 
+
+let imgGato = new Image();
+imgGato.src = "gato.png";
+
 let puntaje = 0;
 let tiempoRestante = 15;
 let temporizador;
@@ -10,6 +14,8 @@ let gatox = 0;
 let gatoy = 0;
 const ANCHOGATO = 50;
 const ALTOGATO = 50;
+
+
 
 // Comida
 let comidax = 0;
@@ -24,10 +30,9 @@ function graficarRectangulo(x, y, ancho, alto, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, ancho, alto);
 }
-
+//modificacion del dibujo
 function graficarGato() {
-    // Usamos un color que resalte más en el fondo rojo, como blanco o negro
-    graficarRectangulo(gatox, gatoy, ANCHOGATO, ALTOGATO, "#000000");
+    ctx.drawImage(imgGato, gatox, gatoy, ANCHOGATO, ALTOGATO);
 }
 
 function graficarComida() {
